@@ -30,4 +30,8 @@ public class Person {
     public String getMail() {
         return mail;
     }
+
+    public boolean isBirthday(){
+        return this.birth_day.getDayOfYear() == LocalDate.now().getDayOfYear();
+    }
 }
