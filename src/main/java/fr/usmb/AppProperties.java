@@ -25,6 +25,7 @@ public final class AppProperties {
             properties.setProperty("CSV_FILE_PATH",CSV_File_Path);
         }
     }
+
     private static String getProperty(String propertyName) throws IOException {
         return properties.getProperty(propertyName);
     }
