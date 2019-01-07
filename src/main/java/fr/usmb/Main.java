@@ -1,13 +1,12 @@
 package fr.usmb;
 
-import javax.mail.MessagingException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Main {
 
-    public static void main(String[] args) throws MessagingException, IOException {
+    public static void main(String[] args) throws IOException {
         if(args.length == 2) {
             AppProperties.initProperties(args[0], args[1]);
             sendTodaysBirthdayMessages();
@@ -17,7 +16,7 @@ public class Main {
         }
     }
 
-    private static void sendTodaysBirthdayMessages() throws IOException, MessagingException {
+    private static void sendTodaysBirthdayMessages() throws IOException {
         CSVReader reader = new CSVReader();
         ArrayList<Person> people = reader.toPeople();
         for(Person p : people) {

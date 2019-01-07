@@ -9,7 +9,7 @@ import javax.mail.internet.MimeMessage;
 
 public class MailSender {
 
-    public static void sendBirthdayMessage(Person receiver) throws MessagingException, IOException {
+    public static void sendBirthdayMessage(Person receiver) throws IOException {
         String mailReceveur = receiver.getMail();
         String subject = "Happy birthday M/Ms " + receiver.getSurname() + " ! ";
         String bodyText = "Hello ! \n We wish you a very happy birthday M/Ms " + receiver.getFirstName()
@@ -17,7 +17,7 @@ public class MailSender {
         sendMail(mailReceveur,subject,bodyText);
     }
 
-    private static void sendMail(String receiver, String subject, String bodyText) throws MessagingException, IOException {
+    private static void sendMail(String receiver, String subject, String bodyText) throws IOException {
         // Create a Properties object to contain connection configuration information.
         Properties props = System.getProperties();
         props.put("mail.transport.protocol", "smtp");
@@ -30,7 +30,8 @@ public class MailSender {
 
         // Create a message with the specified information.
         MimeMessage msg = new MimeMessage(session);
-        msg.setFrom(new InternetAddress(AppProperties.getFrom(),AppProperties.getFromName()));
+        try {
+            msg.setFrom(new InternetAddress(AppProperties.getFrom(),AppProperties.getFromName()));
         msg.setRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
         msg.setSubject(subject);
         msg.setContent(bodyText,"text/html");
@@ -54,6 +55,9 @@ public class MailSender {
         finally{
             // Close and terminate the connection.
             transport.close();
+        }
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
     }
 }
