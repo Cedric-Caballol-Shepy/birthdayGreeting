@@ -7,12 +7,14 @@ public class Person {
     private String surname;
     private String firstName;
     private String mail;
+
     public Person(LocalDate birth, String surname, String firstName, String mail){
         this.birth_day = birth;
         this.surname = surname;
         this.firstName = firstName;
         this.mail = mail;
     }
+
     private Person(){}
 
     public LocalDate getBirth_day() {

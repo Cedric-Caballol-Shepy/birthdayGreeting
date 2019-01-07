@@ -21,7 +21,8 @@ public class CSVReader {
                 lines.add(data);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("CSV not read.");
+            System.out.println("Error message: " + e.getMessage());
         }
         return lines;
     }

@@ -19,15 +19,16 @@ public final class AppProperties {
 
     public static void initProperties(String CSV_File_Path, String properties_File) {
         if (properties == null) {
+            properties = new Properties();
             try {
-                properties = new Properties();
-                InputStream input = null;
-                input = new FileInputStream(properties_File);
+                InputStream input = new FileInputStream(properties_File);
                 properties.load(input);
-                properties.setProperty("CSV_FILE_PATH",CSV_File_Path);
+
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println("Properties file not loaded.");
+                System.out.println("Error message: " + e.getMessage());
             }
+            properties.setProperty("CSV_FILE_PATH",CSV_File_Path);
         }
     }
 
